@@ -1,31 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
-function Nav() {
-    const projects = [
-        {
-            name: "RecipEZ",
-            description:
-            "A recipt generator built using Javascript, Bulma, and twi APIs: Spoontacular and The Cocktail DB"
-        },
-        {
-            name: "Coding Quiz",
-            description: "A simple application that showcases vanilla Javascript, HTML, and CSS"
-        },
-        {
-            name: "Social Network API",
-            description: "Using MongoDB and Express.js, created a social network API that allows users to share their thoughts, react to friends' thoughts, and create a friend list."
-        }
-    ]
+function Nav(props) {
+    const {
+        projects = [],
+        setCurrentProject,
+        currentProject,
+    } = props;
 
-    function projectSelected(name) {
-        console.log(`${name} clicked`);
-    }
+    useEffect(() => {
+        document.title = capitalizeFirstLetter(currentProject.name);
+    }, [currentProject]);
+
 
     return(
-        <header>
+        <header className="flex-row px-1">
             <h2>
-                <a href="/">
-                    Hello there!
+                <a datatesid="link" href="/">
+                    Jamie Steinbauer
                 </a>
             </h2>
             <nav>
@@ -35,15 +27,20 @@ function Nav() {
                             About Me
                         </a>
                     </li>
-                    <li>
+                    <li className="mx-2">
                         <span>Contact</span>
                     </li>
                     {projects.map((project) => (
-                        <li className="mx-1"
+                        <li className={`mx-1 ${
+                            currentProject.name == project.name && 'navActive'
+                        }`}
                         key={project.name}
                         >
-                            <span onClick={() => projectSelected(project.name)}>
-                                {project.name}
+                            <span onClick={() => {
+                                setCurrentProject(project)
+                            }}
+                            >
+                                {capitalizeFirstLetter(project.name)}
                             </span>
                         </li>
                     ))}
