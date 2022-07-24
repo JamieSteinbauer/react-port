@@ -37,7 +37,7 @@ function PhotoList({ category }) {
           <div className="flex-row">
             {currentPhotos.map((image, i) => (
               <img
-                src={require(`../../assets/portfolio/javascript/codingquiz.png`.default)}
+                src={require(`../../assets/portfolio/${category}/${i}.png`.default)}
                 alt={image.name}
                 className="img-thumbnail mx-1"
                 key={image.name}

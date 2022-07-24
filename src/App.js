@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
-import Portfolio from "./components/Portfolio";
+import Project from "./components/Project";
 
 function App() {
   const [categories] = useState([
@@ -37,7 +37,7 @@ function App() {
       ></Nav>
       <main>
         <div>
-          <Portfolio currentCategory={currentCategory}/>
+          <Project currentCategory={currentCategory}/>
           <About />
         </div>
       </main>
