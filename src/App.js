@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
-import Project from "./components/Project";
+import Projects from "./components/Projects";
 import ContactForm from "./components/Contact";
 
 function App() {
+  
   const [categories] = useState([
     {
       name: "RecipEZ",
@@ -19,27 +20,36 @@ function App() {
     {
       name: "Work Day Scheduler",
       description:
-          "A website that uses third-party APIs to impliment a scheduler that allows users to save events for each hour of the day."
-  },
-  {
+        "A website that uses third-party APIs to impliment a scheduler that allows users to save events for each hour of the day.",
+    },
+    {
       name: "Weather Dashboard",
-      description: 
-          "Using the OneWeather API, this application allows the user to search a city and receive the current weather and five day forecast for that city. When clicking the history buttons, the current weather information will show again."
-  }
+      description:
+        "Using the OneWeather API, this application allows the user to search a city and receive the current weather and five day forecast for that city. When clicking the history buttons, the current weather information will show again.",
+    },
   ]);
 
+  const [contactSelected, setContactSelected] = useState(false);
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  
   return (
     <div>
       <Nav
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-          <Project currentCategory={currentCategory}/>
-          <About />
+        {!contactSelected ? (
+          <>
+            <Projects currentCategory={currentCategory}></Projects>
+            <About></About>
+          </>
+        ) : (
           <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
