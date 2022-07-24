@@ -3,14 +3,14 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav(props) {
     const {
-        projects = [],
-        setCurrentProject,
-        currentProject,
+        categories = [],
+        setCurrentCategory,
+        currentCategory,
     } = props;
 
     useEffect(() => {
-        document.title = capitalizeFirstLetter(currentProject.name);
-    }, [currentProject]);
+        document.title = capitalizeFirstLetter(currentCategory.name);
+    }, [currentCategory]);
 
 
     return(
@@ -30,17 +30,17 @@ function Nav(props) {
                     <li className="mx-2">
                         <span>Contact</span>
                     </li>
-                    {projects.map((project) => (
+                    {categories.map((category) => (
                         <li className={`mx-1 ${
-                            currentProject.name == project.name && 'navActive'
+                            currentCategory.name === category.name
                         }`}
-                        key={project.name}
+                        key={category.name}
                         >
                             <span onClick={() => {
-                                setCurrentProject(project)
+                                setCurrentCategory(category)
                             }}
                             >
-                                {capitalizeFirstLetter(project.name)}
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}
