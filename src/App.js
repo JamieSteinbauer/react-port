@@ -1,36 +1,30 @@
 import React, { useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
-import Projects from "./components/Projects";
+import Project from "./components/Projects";
 import ContactForm from "./components/Contact";
 
 function App() {
   
   const [categories] = useState([
     {
-      name: "RecipEZ",
+      name: "Javascript",
       description:
-        "A recipe generator built using Javascript, Bulma, and twi APIs: Spoontacular and The Cocktail DB",
+        "By using Javascript, I can create logic on the front end that allows users to interact with the application.",
     },
     {
-      name: "Coding Quiz",
-      description:
-        "A simple application that showcases vanilla Javascript, HTML, and CSS",
+      name: "API's",
+      description: "APIs are aplenty and are easily able to be implemented into an application."
     },
     {
-      name: "Work Day Scheduler",
-      description:
-        "A website that uses third-party APIs to impliment a scheduler that allows users to save events for each hour of the day.",
-    },
-    {
-      name: "Weather Dashboard",
-      description:
-        "Using the OneWeather API, this application allows the user to search a city and receive the current weather and five day forecast for that city. When clicking the history buttons, the current weather information will show again.",
-    },
+      name: "Group Projects",
+      description: "Focusing on collaboration, group projects are a great way to showcase communication skills."
+    }
   ]);
 
-  const [contactSelected, setContactSelected] = useState(false);
+
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [contactSelected, setContactSelected] = useState(false);
   
   return (
     <div>
@@ -44,7 +38,7 @@ function App() {
       <main>
         {!contactSelected ? (
           <>
-            <Projects currentCategory={currentCategory}></Projects>
+            <Project currentCategory={currentCategory}></Project>
             <About></About>
           </>
         ) : (
